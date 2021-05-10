@@ -1,18 +1,21 @@
 package com.keshavrkaranth.caluclator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
 public class MainActivity extends AppCompatActivity {
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,dot;
-    Button add,substract,multiply,divide,exp,not,mod,clear,eqs;
+    Button B_add, B_subtract, B_multiply, B_divide, B_exp, B_not, B_mod, B_clear, B_eqs;
     double num1,num2,res;
     TextView txt;
-    Boolean addd,subs,mul,div,expp,modd;
+    Boolean add,sub,mul,div,exp,mod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +31,17 @@ public class MainActivity extends AppCompatActivity {
         b7=(Button) findViewById(R.id.seven);
         b8=(Button) findViewById(R.id.eight);
         b9=(Button) findViewById(R.id.nine);
-        clear=(Button) findViewById(R.id.clr);
+        B_clear =(Button) findViewById(R.id.clr);
         dot = (Button) findViewById(R.id.dot);
         txt = findViewById(R.id.res);
-        add = findViewById(R.id.plus);
-        substract = findViewById(R.id.min);
-        multiply = findViewById(R.id.mult);
-        divide = findViewById(R.id.divide);
-        mod = findViewById(R.id.mod);
-        exp = findViewById(R.id.exp);
-        not = findViewById(R.id.not);
-        eqs = findViewById(R.id.eqs);
+        B_add = findViewById(R.id.plus);
+        B_subtract = findViewById(R.id.min);
+        B_multiply = findViewById(R.id.mult);
+        B_divide = findViewById(R.id.divide);
+        B_mod = findViewById(R.id.mod);
+        B_exp = findViewById(R.id.exp);
+        B_not = findViewById(R.id.not);
+        B_eqs = findViewById(R.id.eqs);
 
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 txt.setText(txt.getText().toString()+"9");
             }
         });
-        clear.setOnClickListener(new View.OnClickListener() {
+        B_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 txt.setText("");
@@ -113,38 +116,38 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        not.setOnClickListener(new View.OnClickListener() {
+        B_not.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Double num = Double.parseDouble(txt.getText().toString())*-1;
                 txt.setText(num.toString());
             }
         });
-        add.setOnClickListener(new View.OnClickListener() {
+        B_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(txt.getText().toString()==""){
                     txt.setText("");
                 }else {
-                    addd=true;
+                    add=true;
                     num1 = Double.parseDouble(txt.getText().toString());
                     txt.setText("");
                 }
             }
         });
-        substract.setOnClickListener(new View.OnClickListener() {
+        B_subtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(txt.getText().toString()==""){
                     txt.setText("");
                 }else {
-                    subs=true;
+                    sub=true;
                     num1 = Double.parseDouble(txt.getText().toString());
                     txt.setText("");
                 }
             }
         });
-        multiply.setOnClickListener(new View.OnClickListener() {
+        B_multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(txt.getText().toString()==""){
@@ -157,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        divide.setOnClickListener(new View.OnClickListener() {
+        B_divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -170,26 +173,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        mod.setOnClickListener(new View.OnClickListener() {
+        B_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(txt.getText().toString()==""){
                     txt.setText("");
                 }else {
-                    modd=true;
+                    mod=true;
                     num1 = Double.parseDouble(txt.getText().toString());
                     txt.setText("");
 
                 }
             }
         });
-        exp.setOnClickListener(new View.OnClickListener() {
+        B_exp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(txt.getText().toString()==""){
                     txt.setText("");
                 }else {
-                    expp=true;
+                    exp=true;
                     num1 = Double.parseDouble(txt.getText().toString());
                     txt.setText("");
 
@@ -197,77 +200,64 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        eqs.setOnClickListener(new View.OnClickListener() {
+
+        B_eqs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if(txt.getText().toString()==""){
                     txt.setText("");
-                }else {
-
+                }
+                else {
                     num2 = Double.parseDouble(txt.getText().toString());
+                    if(add==true){
+                        res = num1+num2;
+                        txt.setText(Double.toString(res));
+                        add=false;
+                    }else if(sub==true){
+                        res = num1-num2;
+                        txt.setText(Double.toString(res));
+                        sub=false;
+                    }else if(mul==true){
+                        System.out.println("mul");
+                        res = num1*num2;
+                        txt.setText(Double.toString(res));
+                        mul=false;
+                    }else if(div==true){
+                        if(num2==0){
+                            txt.setText("Error");
+                        }
+                        else {
+                            res = num1/num2;
+                            txt.setText(Double.toString(res));
+                            div=false;
+                        }
 
-                   if(addd){
-                       try{
-                           res = num1+num2;
-                       }
-                       catch (Exception e){
-                           System.out.println(e);
-                       }
-                       addd=false;
-                       txt.setText(Double.toString(res));
-                   }else if(subs){
-                       try{
-                           res = num1-num2;
-                       }
-                       catch (Exception e){
-                           System.out.println(e);
-                       }
-                       subs=false;
-                       txt.setText(Double.toString(res));
-                   }else if(mul){
-                       try{
-                           res = num1*num2;
-                       }
-                       catch (Exception e){
-                           System.out.println(e);
-                       }
-                       mul=false;
-                       txt.setText(Double.toString(res));
-                   }else if(div){
-                       try{
-                           res = num1/num2;
-                       }
-                       catch (Exception e){
-                           System.out.println(e);
-                       }
-                       div=false;
-                       txt.setText(Double.toString(res));
-                   }else if(expp){
-                       try{
-                           res = Math.pow(num1,num2);
-                       }
-                       catch (Exception e){
-                           System.out.println(e);
-                       }
-                       expp=false;
-                       txt.setText(Double.toString(res));
-                   }else if(modd){
-                       try{
-                           res = num1%num2;
-                       }
-                       catch (Exception e){
-                           System.out.println(e);
-                       }
-                       modd=false;
-                       txt.setText(Double.toString(res));
-                   }
+                    }else if(mod==true){
+                        if(num2==0){
+                            txt.setText("Error");
+                        }
+                        else {
+                            res = num1%num2;
+                            txt.setText(Double.toString(res));
+                            mod=false;
+                        }
+                    }else if(exp==true){
+                        if(num2==0){
+                            txt.setText("Error");
+                        }
+                        else {
+                            res = Math.pow(num1,num2);
+                            txt.setText(Double.toString(res));
+                            exp=false;
+                        }
+
+                    }
                 }
-
-
-
             }
         });
+
+
 
 
     }
