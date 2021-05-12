@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,dot;
     Button B_add, B_subtract, B_multiply, B_divide, B_exp, B_not, B_mod, B_clear, B_eqs;
-    double num1,num2,res;
+    double num1=0,num2=0,res=0;
     TextView txt;
-    Boolean add,sub,mul,div,exp,mod;
+    boolean add,sub,mul,div,exp,mod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         B_not = findViewById(R.id.not);
         B_eqs = findViewById(R.id.eqs);
 
+        add = false;
+        sub = false ;
+        mul = false;
+        div = false;
+        exp = false;
+        mod = false;
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -210,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     num2 = Double.parseDouble(txt.getText().toString());
+                    System.out.println(num2);
                     if(add==true){
                         res = num1+num2;
                         txt.setText(Double.toString(res));
