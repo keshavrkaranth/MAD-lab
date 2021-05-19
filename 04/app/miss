@@ -1,0 +1,21 @@
+final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                try{
+                    count++;
+                    System.out.println(count);
+                }
+                catch (Exception e) {
+
+                }
+                finally{
+
+                    handler.postDelayed(this, 5000);
+                }
+            }
+        };
+
+//runnable must be execute once
+        handler.post(runnable);
